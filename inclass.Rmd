@@ -1,0 +1,20 @@
+Getting journal info
+========================================================
+
+### Journals
+
+```{r wikipedia}
+library(XML)
+staturl = "http://en.wikipedia.org/wiki/List_of_statistics_journals"
+statdoc = htmlTreeParse(staturl,useInternal=TRUE)
+titles = xpathSApply(statdoc,"//href",xmlGetAttr,"title")
+```
+
+### Author order
+
+### Title of the paper
+
+### Affiliations
+
+
+
