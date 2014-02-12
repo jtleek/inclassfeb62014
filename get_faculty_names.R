@@ -150,91 +150,91 @@ df.chicago = data.frame(last=last.names.chicago,first=first.names.chicago,pubmed
 
 #Other schools: UMich, UNC
 #University of North Carolina, Chapel Hill
-unc<-htmlTreeParse('http://sph.unc.edu/bios/bios-people/',useInternal=TRUE)
-faculty_unc <- xpathSApply(unc,"//tr[@id='profiles']",xmlValue)
-faculty_unc_temp<- strsplit(faculty_unc, "\n")
-
-faculty_unc_temp_names<-NULL
-faculty_unc_pos<-NULL
-for(i in 1:length(faculty_unc_temp)){
-    faculty_unc_temp_names[i]<-faculty_unc_temp[[i]][1]
-    faculty_unc_pos[i]<-faculty_unc_temp[[i]][2]
-}
-
-
-##Deal with , jr
-faculty_unc_temp_names_0<-strsplit(faculty_unc_temp_names, ",")
-
-faculty_unc_temp_names_1<-NULL
-for (i in 1:length(faculty_unc_temp_names_0)){
-    faculty_unc_temp_names_1[i]<-unlist(faculty_unc_temp_names_0[[i]])[1]
-}
-
-faculty_unc_temp_names_str<-strsplit(faculty_unc_temp_names_1, " ")
-
-faculty_unc_names_last<-NULL
-for (i in 1:length(faculty_unc_temp_names_str)){
-    faculty_unc_names_last[i]<-unlist(faculty_unc_temp_names_str[i])[length(unlist(faculty_unc_temp_names_str[i]))]
-}
-
-faculty_unc_names_first<-NULL
-for (i in 1:length(faculty_unc_temp_names_str)){
-    faculty_unc_names_first[i]<-unlist(faculty_unc_temp_names_str[i])[1]
-}
-
-faculty_unc_names_first_initial<-substr(faculty_unc_names_first,1,1)
-faculty_unc_pubmed_name<-paste(faculty_unc_names_last, faculty_unc_names_first_initial) 
-
-faculty_unc_all<- data.frame(last=faculty_unc_names_last,first=faculty_unc_names_first,pos=faculty_unc_pos,pubmed.name=faculty_unc_pubmed_name)
-df.unc<-faculty_unc_all[1:44,]
-
-
-#University of Michigan
-umich<-htmlTreeParse('http://www.sph.umich.edu/iscr/faculty/dept.cfm?deptID=1',useInternal=TRUE)
-faculty <- xpathSApply(umich,"//td[@class='list']",xmlValue)
-
-faculty <- xpathSApply(umich,"//td[@class='list']",xmlValue)
-faculty2<-xpathSApply(umich,"//a[@title]",xmlValue)
-seq<-seq(from=1,to=99,by=2)
-facultylist<-faculty2[25:123][seq]
-faculty_full<-facultylist[1:37]
-faculty_full_names_temp<- strsplit(faculty_full, ",")
-faculty_full_names_temp<-matrix(unlist(faculty_full_names_temp), ncol=2, byrow=TRUE)
-faculty_full_names<-faculty_full_names_temp[,1]
-faculty_full_names_str<-strsplit(faculty_full_names, " ")
-
-faculty_full_names_last<-NULL
-for (i in 1:length(faculty_full_names_str)){
-    faculty_full_names_last[i]<-unlist(faculty_full_names_str[i])[length(unlist(faculty_full_names_str[i]))]
-}
-
-faculty_full_names_first<-NULL
-for (i in 1:length(faculty_full_names_str)){
-    faculty_full_names_first[i]<-unlist(faculty_full_names_str[i])[1]
-}
-
-faculty_full_names_first_initial<-substr(faculty_full_names_first,1,1)
-faculty_full_pubmed_name<-paste(faculty_full_names_last, faculty_full_names_first_initial) 
-
-
-faculty_joint<-facultylist[38:43]
-faculty_joint_names_temp<- colsplit(faculty_joint, ",",c("name","deg"))
-faculty_joint_names<-faculty_joint_names_temp[,1]
-faculty_joint_names_str<-strsplit(faculty_joint_names, " ")
-
-faculty_joint_names_last<-NULL
-for (i in 1:length(faculty_joint_names_str)){
-    faculty_joint_names_last[i]<-unlist(faculty_joint_names_str[i])[length(unlist(faculty_joint_names_str[i]))]
-}
-
-faculty_joint_names_first<-NULL
-for (i in 1:length(faculty_joint_names_str)){
-    faculty_joint_names_first[i]<-unlist(faculty_joint_names_str[i])[1]
-}
-
-faculty_joint_names_first_initial<-substr(faculty_joint_names_first,1,1)
-faculty_joint_pubmed_name<-paste(faculty_joint_names_last, faculty_joint_names_first_initial) 
-
-
-df.umich.full<- data.frame(last=faculty_full_names_last,first=faculty_full_names_first,pubmed.name=faculty_full_pubmed_name)
-df.umich.joint<- data.frame(last=faculty_joint_names_last,first=faculty_joint_names_first,pubmed.name=faculty_joint_pubmed_name)
+# unc<-htmlTreeParse('http://sph.unc.edu/bios/bios-people/',useInternal=TRUE)
+# faculty_unc <- xpathSApply(unc,"//tr[@id='profiles']",xmlValue)
+# faculty_unc_temp<- strsplit(faculty_unc, "\n")
+# 
+# faculty_unc_temp_names<-NULL
+# faculty_unc_pos<-NULL
+# for(i in 1:length(faculty_unc_temp)){
+#     faculty_unc_temp_names[i]<-faculty_unc_temp[[i]][1]
+#     faculty_unc_pos[i]<-faculty_unc_temp[[i]][2]
+# }
+# 
+# 
+# ##Deal with , jr
+# faculty_unc_temp_names_0<-strsplit(faculty_unc_temp_names, ",")
+# 
+# faculty_unc_temp_names_1<-NULL
+# for (i in 1:length(faculty_unc_temp_names_0)){
+#     faculty_unc_temp_names_1[i]<-unlist(faculty_unc_temp_names_0[[i]])[1]
+# }
+# 
+# faculty_unc_temp_names_str<-strsplit(faculty_unc_temp_names_1, " ")
+# 
+# faculty_unc_names_last<-NULL
+# for (i in 1:length(faculty_unc_temp_names_str)){
+#     faculty_unc_names_last[i]<-unlist(faculty_unc_temp_names_str[i])[length(unlist(faculty_unc_temp_names_str[i]))]
+# }
+# 
+# faculty_unc_names_first<-NULL
+# for (i in 1:length(faculty_unc_temp_names_str)){
+#     faculty_unc_names_first[i]<-unlist(faculty_unc_temp_names_str[i])[1]
+# }
+# 
+# faculty_unc_names_first_initial<-substr(faculty_unc_names_first,1,1)
+# faculty_unc_pubmed_name<-paste(faculty_unc_names_last, faculty_unc_names_first_initial) 
+# 
+# faculty_unc_all<- data.frame(last=faculty_unc_names_last,first=faculty_unc_names_first,pos=faculty_unc_pos,pubmed.name=faculty_unc_pubmed_name)
+# df.unc<-faculty_unc_all[1:44,]
+# 
+# 
+# #University of Michigan
+# umich<-htmlTreeParse('http://www.sph.umich.edu/iscr/faculty/dept.cfm?deptID=1',useInternal=TRUE)
+# faculty <- xpathSApply(umich,"//td[@class='list']",xmlValue)
+# 
+# faculty <- xpathSApply(umich,"//td[@class='list']",xmlValue)
+# faculty2<-xpathSApply(umich,"//a[@title]",xmlValue)
+# seq<-seq(from=1,to=99,by=2)
+# facultylist<-faculty2[25:123][seq]
+# faculty_full<-facultylist[1:37]
+# faculty_full_names_temp<- strsplit(faculty_full, ",")
+# faculty_full_names_temp<-matrix(unlist(faculty_full_names_temp), ncol=2, byrow=TRUE)
+# faculty_full_names<-faculty_full_names_temp[,1]
+# faculty_full_names_str<-strsplit(faculty_full_names, " ")
+# 
+# faculty_full_names_last<-NULL
+# for (i in 1:length(faculty_full_names_str)){
+#     faculty_full_names_last[i]<-unlist(faculty_full_names_str[i])[length(unlist(faculty_full_names_str[i]))]
+# }
+# 
+# faculty_full_names_first<-NULL
+# for (i in 1:length(faculty_full_names_str)){
+#     faculty_full_names_first[i]<-unlist(faculty_full_names_str[i])[1]
+# }
+# 
+# faculty_full_names_first_initial<-substr(faculty_full_names_first,1,1)
+# faculty_full_pubmed_name<-paste(faculty_full_names_last, faculty_full_names_first_initial) 
+# 
+# 
+# faculty_joint<-facultylist[38:43]
+# faculty_joint_names_temp<- colsplit(faculty_joint, ",",c("name","deg"))
+# faculty_joint_names<-faculty_joint_names_temp[,1]
+# faculty_joint_names_str<-strsplit(faculty_joint_names, " ")
+# 
+# faculty_joint_names_last<-NULL
+# for (i in 1:length(faculty_joint_names_str)){
+#     faculty_joint_names_last[i]<-unlist(faculty_joint_names_str[i])[length(unlist(faculty_joint_names_str[i]))]
+# }
+# 
+# faculty_joint_names_first<-NULL
+# for (i in 1:length(faculty_joint_names_str)){
+#     faculty_joint_names_first[i]<-unlist(faculty_joint_names_str[i])[1]
+# }
+# 
+# faculty_joint_names_first_initial<-substr(faculty_joint_names_first,1,1)
+# faculty_joint_pubmed_name<-paste(faculty_joint_names_last, faculty_joint_names_first_initial) 
+# 
+# 
+# df.umich.full<- data.frame(last=faculty_full_names_last,first=faculty_full_names_first,pubmed.name=faculty_full_pubmed_name)
+# df.umich.joint<- data.frame(last=faculty_joint_names_last,first=faculty_joint_names_first,pubmed.name=faculty_joint_pubmed_name)
