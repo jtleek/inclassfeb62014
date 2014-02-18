@@ -96,8 +96,8 @@ get.profs.info = function(url,format='table', table.cols=4, title.col=-1,
 }
 
 # Commands to get information for professors at each school
-df.hop.full = get.profs.info(url.full.hop,format='table',table.cols=4,title.col=2,names.col=c(2,1))
-df.hop.joint = get.profs.info(url.joint.hop,format='table',table.cols=4,title.col=2,names.col=c(2,1))
+df.hop.full = get.profs.info(url.full.hop,format='table',table.cols=4,title.col=3,names.col=c(2,1))
+df.hop.joint = get.profs.info(url.joint.hop,format='table',table.cols=4,title.col=3,names.col=c(2,1))
 df.wash = get.profs.info(url.wash,format='table',table.cols=4,title.col=2,names.col=1,parse.names=TRUE,first.last=FALSE,)
 df.harv = get.profs.info(url.harv,format='list',name.divide=' ',parse.names=TRUE,first.last=TRUE,name.other.sep='\n',begin.name='Rebecca Betensky',end.name='Laura Forsberg White')
 df.iowa = get.profs.info(url.iowa,format='table',table.cols=11,title.col=4,names.col=3,parse.names=TRUE, first.last=FALSE)
@@ -116,7 +116,7 @@ pubmed.name.minn = paste(last.name.minn,first.initial.minn)
 df.minn = data.frame(last=last.name.minn,first=first.name.minn,pubmed.name=pubmed.name.minn)
 
 # Stanford University
-names.stan = c('Emmanuel J. Candès','Sourav Chatterjee','Amir Dembo','Persi Diaconis','David Donoho','Bradley Efron','Trevor J. Hastie','Susan Holmes','Iain Johnstone','Tze Leung Lai','Art B. Owen','Joseph P. Romano','David O. Siegmund','Robert Tibshirani','Guenther Walther','Wing Hung Wong','Andrea Montanari','Jonathan Taylor','Lester Mackey','Bala Rajaratnam','John Chambers','Balasubramanian Narasimhan','Theodore W. Anderson','Jerome H. Friedman','Ingram Olkin','Charles Stein','Paul Switzer')
+names.stan = c('Emmanuel Candes','Sourav Chatterjee','Amir Dembo','Persi Diaconis','David Donoho','Bradley Efron','Trevor Hastie','Susan Holmes','Iain Johnstone','Tze Leung Lai','Art Owen','Joseph Romano','David Siegmund','Robert Tibshirani','Guenther Walther','Wing Hung Wong','Andrea Montanari','Jonathan Taylor','Lester Mackey','Bala Rajaratnam','John Chambers','Balasubramanian Narasimhan','Theodore Anderson','Jerome Friedman','Ingram Olkin','Charles Stein','Paul Switzer')
 split.names.stan = strsplit(names.stan,' ')
 first.names.stan = unlist(lapply(split.names.stan,'[',1))
 last.names.stan = lapply(split.names.stan,'tail',-1)
